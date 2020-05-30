@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    'use strict';
+    {
+      //オブジェクトをマージ(結合)する方法
+      //Object.assignを使う
+      //しかしこれではobj1が上書きされてしまう
+      const obj1 = {
+        name: 'メッシ',
+        positon: 'フォワード',
+      }
+      const obj2 = {
+        team: 'バルサ',
+        color: '赤',
+      }
+      /* const barcelona = Object.assign(obj1,obj2);
+       console.log(barcelona); //{name: "メッシ", positon: "フォワード", team: "バルサ", color: "赤"}
+       console.log(obj1); //{name: "メッシ", positon: "フォワード", team: "バルサ", color: "赤"}
+       console.log(obj2); //{team: "バルサ", color: "赤"} 
+       
+ 
+       //上記だとobj1が上書きされてしまうがassignに空の{}を渡してあげると上書きされない
+       const barcelona2 = Object.assign({},obj1,obj2); 
+       console.log(barcelona2); ////{name: "メッシ", positon: "フォワード", team: "バルサ", color: "赤"}
+       console.log(obj1); //{name: "メッシ", positon: "フォワード"}
+       console.log(obj2); //{team: "バルサ", color: "赤"} */
+
+
+      //しかしながらキーが同じだと後から記述した方が上書きされてしまう
+      //もちろんassignに空の{}を渡していなければなければobj1は上書きされる
+      const obj3 = {
+        team: 'レアル', color: '白'
+      }
+      const obj4 = {
+        team: 'バルサ', stadium: 'カンプノウ'
+      }
+      const clasico = Object.assign({}, obj3, obj4);
+
+      console.log(clasico); //{team: "バルサ", color: "白", stadium: "カンプノウ"}
+      console.log(obj3); //{team: "レアル", color: "白"}
+      console.log(obj4); //{team: "バルサ", stadium: "カンプノウ"}
+
+
+      //スプレッド構文で合体もできるがキーが同じだと上書きされるのは同じであることに注意
+      //キーが異なれば簡単に展開可能
+      //それぞれ(obj5,obj6)は上書きされない
+      const obj5 = {
+        team: 'ドルトムント', color: '黄'
+      }
+      const obj6 = {
+        team: 'ザルツブルグ', nation: 'オーストリア'
+      }
+      const total = { ...obj5, ...obj6 }
+      console.log(total); //{team: "ザルツブルグ", color: "黄", nation: "オーストリア"}
+      console.log(obj5);
+      console.log(obj6);
+      
+
+
+      
+    }
+  </script>
+</body>
+
+</html>
